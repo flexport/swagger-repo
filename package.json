@@ -30,7 +30,7 @@
     "swagger-repo": "./bin/swagger-repo.js"
   },
   "engines": {
-    "node": ">=10.14.0"
+    "node": ">=6.4.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
