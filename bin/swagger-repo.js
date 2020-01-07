@@ -24,9 +24,14 @@ program
   .option('-b, --basedir <relpath>', 'The base dir')
   .option('-o, --outfile <filename>', 'The output file')
   .option('-y, --yaml', 'Output YAML(Default is JSON)')
+  .option('-t, --header <header_string>', 'header to be added to the bundled output')
   .action(function(options) {
     const spec = api.bundle({ ...options, verbose: true });
-    const str = api.stringify(spec, options);
+    let str = api.stringify(spec, options);
+
+    if (options.header) {
+      str = options.header + "\n" + str;
+    }
 
     if (options.outfile) {
       fs.writeFileSync(options.outfile, str);
