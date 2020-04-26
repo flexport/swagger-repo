@@ -18,10 +18,14 @@ function writeAndLog(filename, contents) {
   console.log(`Created ${chalk.blue(filename)}`);
 }
 
+function collect(value, previous) {
+  return previous.concat([value]);
+}
+
 program
   .command('bundle')
   .description('Bundles a multi-file OpenAPI definition')
-  .option('-b, --basedir <relpath>', 'The base dir')
+  .option('-b, --basedir <relpath>', 'The base dir, can have more than one', collect, [])
   .option('-o, --outfile <filename>', 'The output file')
   .option('-y, --yaml', 'Output YAML(Default is JSON)')
   .option('-t, --header <header_string>', 'header to be added to the bundled output')
